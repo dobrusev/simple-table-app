@@ -1,0 +1,16 @@
+# bin
+bin/node_modules
+bin/main.js
+bin/main.js.map
+
+
+# IntelliJ module
+*.iml
+/.idea
+
+# Sublime project files
+*.sublime-*
+
+# mac
+.DS_Store
+user.cache
