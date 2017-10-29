@@ -1,5 +1,6 @@
 var TableTitle = require("../enum/TableTitle");
 var RenderUtil = require("./RenderUtil");
+var DateUtil = require("./DateUtil");
 
 let _singleton = null;
 
@@ -23,7 +24,7 @@ class TableCellFactory {
 		if (title === TableTitle.STOCK_COUNT)
 			return this.renderCell(elType, data.stockCount);
 		if (title === TableTitle.LAST_UPDATED)
-			return this.renderCell(elType, data.updated);
+			return this.renderCell(elType, DateUtil.toShortDate(data.updated));
 	}
 
 	renderCell(type, text) {

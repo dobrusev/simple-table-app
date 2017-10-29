@@ -1,31 +1,17 @@
-import * as ProductLoader from "./loader/ProductLoader";
 import * as Root from "./view/Root";
+import * as TableController from "./framework/TableController";
+import * as TableModel from "./framework/TableModel";
 
 class App {
-	static get DATA_URL() { return "https://api.myjson.com/bins/129xoh"; }
-
 	constructor() {
-		this.loadData();
-	}
-	
-	loadData() {
-		this.productLoader = new ProductLoader(App.DATA_URL, this.onSuccess.bind(this), 
-			this.onFail.bind(this));
-		this.productLoader.load();
+		this.init();
 	}
 
-	renderView(data) {
-		var root = new Root(data);
-		root.render();
-	}
-
-	onSuccess(result) {
-		this.products = result;
-		this.renderView(this.products);	
-	}
-	
-	onFail(error) {
-		throw error;
+	init() {
+		this.view = new Root();
+		this.model = new TableModel();
+		this.controller = new TableController(this.model, this.view);
+		this.controller.loadData();
 	}
 }
 export function start () { new App(); }

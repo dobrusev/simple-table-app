@@ -2,11 +2,11 @@ var Table = require("./Table");
 var BarChart = require("./BarChart");
 
 class Root {
-	constructor(data) {
-		this.data = data;
+	constructor() {
 	}
 
-	render() {
+	render(data) {
+		this.data = data;
 		var table = new Table(this.data, this.onTableRowClick.bind(this));
 		table.render();
 	}
