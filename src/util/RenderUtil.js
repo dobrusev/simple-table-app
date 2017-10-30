@@ -20,16 +20,17 @@ class RenderUtil {
 		return img;
 	}
 
-	static createRectangle(x, y, width, height, value) {
+	/** context.fillRect(x,y,width,height); **/
+	static createRectangle(left, width, height, value) {
 		var el = RenderUtil.create("canvas");
 		el.setAttribute("width", width);
 		el.setAttribute("height", height+21);
-		el.setAttribute("x", x);
-		el.setAttribute("y", y);
+		el.setAttribute("style","left:" + left +"px;");
 		var ctx = el.getContext('2d');
 		ctx.font = "8pt Calibri";
-		ctx.fillText(value, 30, 10);
+		ctx.fillText(value, 0, 10);
 		ctx.fillStyle="#38eaf7";
+		ctx.beginPath();
 		ctx.fillRect(0, 20, width, height+21);
 		return el
 	}
