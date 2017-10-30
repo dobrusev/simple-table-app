@@ -2,18 +2,27 @@ var Table = require("./Table");
 var BarChart = require("./BarChart");
 
 class Root {
-	constructor(data) {
-		this.data = data;
+	constructor() {
 	}
 
-	render() {
+	render(data) {
+		this.data = data;
 		var table = new Table(this.data, this.onTableRowClick.bind(this));
 		table.render();
 	}
+
+	renderChart() {
+		new BarChart().render(this.element);
+	}
 	
 	onTableRowClick(elementId) {
-		var element = this.data.products.find(object => object.id === elementId);
-		new BarChart().render(element);
+		this.element = this.data.products.find(object => object.id === elementId);
+		this.renderChart();
+	}
+
+	onWindowResize() {
+		if (this.element)
+			this.renderChart();
 	}
 }
 module.exports = Root;
