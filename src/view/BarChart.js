@@ -12,12 +12,12 @@ class BarChart {
 
 	get rect() {
 		if (!_chartRect)
-			_chartRect = document.getElementById("chart").getClientRects()[0]; 
+			_chartRect = document.getElementById(this.context).getClientRects()[0]; 
 		return _chartRect;
 	}
 
 	get barWidth() {
-		var props =  ChartUtil.propsCount(_data.analytics);
+		let props =  ChartUtil.propsCount(_data.analytics);
 		if (!_barWidth)
 			_barWidth = (this.rect.width - props*this.barMargin)/props;
 		return _barWidth;
@@ -34,7 +34,7 @@ class BarChart {
 	}
 
 	getElementPosition(index) {
-		var position = this.barMargin;
+		let position = this.barMargin;
 		if (index != 0)
 			position += index*(this.barWidth + this.barMargin);
 		return position;
@@ -52,7 +52,7 @@ class BarChart {
 	}
 
 	disposeElements() {
-		RenderUtil.destroyChildren("chart");
+		RenderUtil.destroyChildren(this.context);
 	}
 
 	disposeData() {
@@ -62,11 +62,12 @@ class BarChart {
 		_maxPropValue = null;
 	}
 
-	render(data) {
+	render(context, data) {
 		if (_data)
 			this.despose();
 		_data = data;
-		document.getElementById("chart").appendChild(this.renderChart());
+		this.context = context;
+		document.getElementById(this.context).appendChild(this.renderChart());
 	}
 
 	renderChart() {
@@ -75,14 +76,14 @@ class BarChart {
 	}
 
 	renderTitle() {
-		var result = RenderUtil.create("div", "title");
+		let result = RenderUtil.create("div", "title");
 		result.innerHTML = _data.name;
 		return result;
 	}
 
 	renderData() {
-		var bars = [];
-		var barIndex = 0;
+		let bars = [];
+		let barIndex = 0;
 		for (let analytic in _data.analytics) 
 			if (_data.analytics.hasOwnProperty(analytic))
 				bars.push(this.renderBar(analytic, barIndex++));
@@ -90,17 +91,16 @@ class BarChart {
 	}
 
 	renderBar(analytic, index) {
-		var value = _data.analytics[analytic];
-		var percentageValue = ChartUtil.toPercentage(value, this.maxPropValue, this.maxMaxDataHeight);
+		let value = _data.analytics[analytic];
+		let percentageValue = ChartUtil.toPercentage(value, this.maxPropValue, this.maxMaxDataHeight);
+		let position = this.getElementPosition(index);
 		
-		var position = this.getElementPosition(index);
-		console.log(this.maxMaxDataHeight, value, percentageValue);
 		return RenderUtil.createRectangle(position, this.barWidth, percentageValue, value);
 	}
 
 	renderXAxis() {
-		var titles = [];
-		var titleIndex = 0;
+		let titles = [];
+		let titleIndex = 0;
 		for (let analytic in _data.analytics) 
 			if (_data.analytics.hasOwnProperty(analytic))
 				titles.push(this.renderAxisTitle(analytic, titleIndex++));
@@ -108,8 +108,8 @@ class BarChart {
 	}
 
 	renderAxisTitle(analytic, index) {
-		var el = RenderUtil.create("div");
-		var positon = this.getElementPosition(index);
+		let el = RenderUtil.create("div");
+		let positon = this.getElementPosition(index);
 		RenderUtil.setElementStyle(el, [{"style":"width: " + this.barWidth + "px; left:" 
 			+ positon +"px;"}]);
 		el.innerHTML = analytic;

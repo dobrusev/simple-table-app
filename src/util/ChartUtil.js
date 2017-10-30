@@ -5,7 +5,7 @@ class ChartUtil {
 	}
 
 	static propsCount(analytics) {
-		var result = 0;
+		let result = 0;
 		for (let analytic in analytics)
 			if (analytics.hasOwnProperty(analytic))
 				result++;
@@ -13,7 +13,7 @@ class ChartUtil {
 	}
 
 	static getMaxProp(analytics) {
-		var result = 0;
+		let result = 0;
 		for (let analytic in analytics)
 			if (analytics.hasOwnProperty(analytic) && result < analytics[analytic])
 				result = analytics[analytic];

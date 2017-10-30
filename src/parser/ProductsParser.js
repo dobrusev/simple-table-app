@@ -1,9 +1,9 @@
-var Products = require("../valueObject/Products");
-var ProductParser = require("./ProductParser");
+let Products = require("../valueObject/Products");
+let ProductParser = require("./ProductParser");
 
 class ProductsParser {
 	parse(data) {
-		var result = new Products();
+		let result = new Products();
 		if (data.hasOwnProperty(Products.FIELD_PRODUCTS))
 			result.products = new ProductParser().parseList(data[Products.FIELD_PRODUCTS]);
 		return result;

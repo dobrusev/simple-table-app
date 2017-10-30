@@ -1,6 +1,6 @@
-var TableTitle = require("../enum/TableTitle");
-var RenderUtil = require("./RenderUtil");
-var DateUtil = require("./DateUtil");
+let TableTitle = require("../enum/TableTitle");
+let RenderUtil = require("./RenderUtil");
+let DateUtil = require("./DateUtil");
 
 let _singleton = null;
 
