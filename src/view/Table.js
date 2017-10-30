@@ -1,18 +1,19 @@
-var RenderUtil = require("../util/RenderUtil");
-var TableTitle = require("../enum/TableTitle");
-var TableCellFactory = require("../util/TableCellFactory");
+let RenderUtil = require("../util/RenderUtil");
+let TableTitle = require("../enum/TableTitle");
+let TableCellFactory = require("../util/TableCellFactory");
 
 class Table {
 	static get Titles() {return [TableTitle.IMAGE, TableTitle.NAME, TableTitle.STOCK_COUNT,
 		TableTitle.PRICE, TableTitle.LAST_UPDATED];}
 
-	constructor(data, onRowClick) {
+	constructor(context, data, onRowClick) {
+		this.context = context;
 		this.data = data;
 		this.onRowClick = onRowClick;
 	}
 
 	render() {
-		document.getElementById("products").appendChild(this.renderTable());
+		document.getElementById(this.context).appendChild(this.renderTable());
 	}
 	
 	renderTable() {
@@ -20,16 +21,16 @@ class Table {
 	}
 	
 	renderTableBody() {
-  		var rows = [this.renderHeader()];
+		let rows = [this.renderHeader()];
 		for (let product of this.data.products) 
 			rows.push(this.renderProduct(product));
 		return RenderUtil.create("tbody", null, rows);
 	}
 	
 	renderHeader() {
-		var cells = [];
+		let cells = [];
 		for (let title of Table.Titles) {
-			var cell = new TableCellFactory().getCell("th", title);
+			let cell = new TableCellFactory().getCell("th", title);
 			cells.push(cell);
 		}
 		return RenderUtil.create("tr", null, cells);
@@ -37,9 +38,9 @@ class Table {
 	
 	renderProduct(product) {
 		new TableCellFactory()._instance;
-		var cells = [];
+		let cells = [];
 		for (let title of Table.Titles) {
-			var cell = new TableCellFactory().getCell("td", title, product);
+			let cell = new TableCellFactory().getCell("td", title, product);
 			cells.push(cell);
 		}
 		return RenderUtil.create("tr", product.id, cells, this.onClick.bind(this));

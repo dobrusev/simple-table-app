@@ -1,4 +1,4 @@
-var ProductsParser = require("../parser/ProductsParser");
+let ProductsParser = require("../parser/ProductsParser");
 
 class ProductLoader {
 	constructor(url, onSuccess, onFail) {
@@ -20,7 +20,7 @@ class ProductLoader {
 		
 		if (this.xhttp.status >= 200 && this.xhttp.status < 400) {
 			try {
-				var data = JSON.parse(this.xhttp.responseText);
+				let data = JSON.parse(this.xhttp.responseText);
 				this.onSuccess(new ProductsParser().parse(data));
 			} catch (e) { 
 				throw e;

@@ -1,8 +1,8 @@
-var Analytics = require("../valueObject/Analytics");
+let Analytics = require("../valueObject/Analytics");
 
 class AnalyticsParser {
 	parse(data) {
-		var result = new Analytics();
+		let result = new Analytics();
 		if (data.hasOwnProperty(Analytics.FIELD_CARTED))
 			result.carted = data[Analytics.FIELD_CARTED];
 		if (data.hasOwnProperty(Analytics.FIELD_PURCHASED))

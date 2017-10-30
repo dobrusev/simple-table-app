@@ -1,5 +1,5 @@
-var Table = require("./Table");
-var BarChart = require("./BarChart");
+let Table = require("./Table");
+let BarChart = require("./BarChart");
 
 class Root {
 	constructor() {
@@ -7,12 +7,12 @@ class Root {
 
 	render(data) {
 		this.data = data;
-		var table = new Table(this.data, this.onTableRowClick.bind(this));
+		let table = new Table("products", this.data, this.onTableRowClick.bind(this));
 		table.render();
 	}
 
 	renderChart() {
-		new BarChart().render(this.element);
+		new BarChart().render("chart", this.element);
 	}
 	
 	onTableRowClick(elementId) {

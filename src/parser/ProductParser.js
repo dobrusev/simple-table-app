@@ -1,16 +1,16 @@
-var AnalyticsParser = require("./AnalyticsParser");
-var Product = require("../valueObject/Product");
+let AnalyticsParser = require("./AnalyticsParser");
+let Product = require("../valueObject/Product");
 
 class ProductParser {
 	parseList(data) {
-		var result = [];
+		let result = [];
 		for (let product of data)
 			result.push(this.parse(product));
 		return result;
 	}
 	
 	parse(data) {
-		var result = new Product();
+		let result = new Product();
 		if (data.hasOwnProperty(Product.FIELD_ID))
 			result.id = data[Product.FIELD_ID];
 		if (data.hasOwnProperty(Product.FIELD_NAME))

@@ -1,4 +1,4 @@
-var ProductLoader = require("../loader/ProductLoader");
+let ProductLoader = require("../loader/ProductLoader");
 
 class TableController {
 	static get DATA_URL() { return "https://api.myjson.com/bins/129xoh"; }
