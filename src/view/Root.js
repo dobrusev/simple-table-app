@@ -10,10 +10,19 @@ class Root {
 		var table = new Table(this.data, this.onTableRowClick.bind(this));
 		table.render();
 	}
+
+	renderChart() {
+		new BarChart().render(this.element);
+	}
 	
 	onTableRowClick(elementId) {
-		var element = this.data.products.find(object => object.id === elementId);
-		new BarChart().render(element);
+		this.element = this.data.products.find(object => object.id === elementId);
+		this.renderChart();
+	}
+
+	onWindowResize() {
+		if (this.element)
+			this.renderChart();
 	}
 }
 module.exports = Root;

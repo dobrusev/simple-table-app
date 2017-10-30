@@ -6,6 +6,11 @@ class TableController {
 	constructor(model, view) {
 		this.model = model;
 		this.view = view;
+		this.attachWindowResizeListener();
+	}
+
+	attachWindowResizeListener() {
+		window.addEventListener('resize', this.onWindowResize.bind(this));
 	}
 
 	loadData() {
@@ -21,6 +26,11 @@ class TableController {
 	
 	onFail(error) {
 		throw error;
+	}
+
+	onWindowResize() {
+		console.log();
+		this.view.onWindowResize();
 	}
 };
 module.exports = TableController;

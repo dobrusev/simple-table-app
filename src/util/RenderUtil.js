@@ -1,4 +1,6 @@
 class RenderUtil {
+	static get barTitleHeight() { return 21;}
+
 	static create(element, id, children, onClick) {
 		var el = document.createElement(element);
 		if (id)
@@ -14,25 +16,33 @@ class RenderUtil {
 
 	static createImage(src, height, width) {
 		var img = document.createElement("img");
-		img.setAttribute("src", src);
-		img.setAttribute("height", height);
-		img.setAttribute("width", width);
+		this.setElementStyle(img, [{"src":src},{"height":height}, {"width":width}]);
 		return img;
 	}
 
-	/** context.fillRect(x,y,width,height); **/
 	static createRectangle(left, width, height, value) {
 		var el = RenderUtil.create("canvas");
-		el.setAttribute("width", width);
-		el.setAttribute("height", height+21);
-		el.setAttribute("style","left:" + left +"px;");
-		var ctx = el.getContext('2d');
-		ctx.font = "8pt Calibri";
-		ctx.fillText(value, 0, 10);
-		ctx.fillStyle="#38eaf7";
-		ctx.beginPath();
-		ctx.fillRect(0, 20, width, height+21);
-		return el
+		var heightWithText = height + this.barTitleHeight;
+		this.setElementStyle(el, [{"width":width, "height":heightWithText,
+			"style":"left:" + left +"px;"}]);
+		var context = el.getContext('2d');
+		this.createRectangleText(context, value);
+		context.beginPath();
+		context.fillRect(0, this.barTitleHeight, width, heightWithText);
+		return el;
+	}
+
+	static createRectangleText(context, value) {
+		context.font = "8pt Calibri";
+		context.fillText(value, 0, 10);
+		context.fillStyle="#38eaf7";
+	}
+
+	static setElementStyle(el, styles)
+	{
+		for (let style in styles)
+			for (let key in styles[style])
+				el.setAttribute(key, styles[style][key]);
 	}
 
 	static destroyChildren(elementId)
