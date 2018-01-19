@@ -1,0 +1,37 @@
+{
+  "name": "simple-table-app",
+  "version": "1.0.0",
+  "description": "simple-table-app",
+  "main": "webpack.config.js",
+  "bin": {
+    "simple-table-app": "Main.js"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dobrusev/simple-table-app.git"
+  },
+  "keywords": [
+    "simple",
+    "table",
+    "app"
+  ],
+  "author": "Dobrin Rusev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dobrusev/simple-table-app/issues"
+  },
+  "homepage": "https://github.com/dobrusev/simple-table-app#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

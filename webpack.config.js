@@ -1,7 +1,14 @@
+const path = require('path');
+
 module.exports = {
-    entry: "./src/Main.js",
+    entry: {
+      app: './src/Main.js'
+    },
+    devServer: {
+	  contentBase: './bin'
+	},
     output: {
-        path: __dirname,
-        filename: "./bin/Main.js"
+        path: path.resolve(__dirname, 'bin'),
+        filename: "main.js"
     }
 };

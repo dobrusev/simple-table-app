@@ -1,8 +1,9 @@
 # bin
-bin/node_modules
 bin/main.js
 bin/main.js.map
 
+# node
+node_modules
 
 # IntelliJ module
 *.iml
@@ -14,3 +15,6 @@ bin/main.js.map
 # mac
 .DS_Store
 user.cache
+
+# VS
+.vscode/

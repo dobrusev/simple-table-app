@@ -12,7 +12,8 @@ npm install webpack
 ## Build
 
 ```
-webpack
+npm install
+npm start
 ```
 
 ## Build docker 
