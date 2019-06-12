@@ -5,7 +5,7 @@ module.exports = {
       app: './src/Main.js'
     },
     devServer: {
-	  contentBase: './bin'
+        contentBase: './bin'
 	},
     output: {
         path: path.resolve(__dirname, 'bin'),

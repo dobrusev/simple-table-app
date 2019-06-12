@@ -17,6 +17,6 @@ npm start
 ```
 
 ## Build docker 
-docker run -p 4000:4000 dobrinrusev/simple-table-app:<tag> (add -d flad to run in background)
-available tags:
-initial - initial docker build.
+docker build -t simple-table-app .
+docker run --name simple-table-app-container simple-table-app
+docker start simple-table-app-container 

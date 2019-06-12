@@ -1,5 +1,5 @@
 const TableTitle = Object.freeze({
-	IMAGE: "Image",
+	IMAGE: "Images",
 	NAME: "Name",
 	STOCK_COUNT: "Stock count",
 	PRICE: "Price",
